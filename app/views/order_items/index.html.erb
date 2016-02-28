@@ -1,31 +1,40 @@
-<h1>Listing order_items</h1>
-
-<table>
+<%- model_class = OrderItem -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => OrderItem %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Quantity</th>
-      <th>Status</th>
-      <th>Order</th>
-      <th>Stocktype</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:quantity) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%= model_class.human_attribute_name(:stocktype) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @order_items.each do |order_item| %>
       <tr>
+        <td><%= order_item.id %></td>
         <td><%= order_item.quantity %></td>
         <td><%= order_item.status %></td>
-        <td><%= order_item.order %></td>
         <td><%= order_item.stocktype %></td>
-        <td><%= link_to 'Show', order_item %></td>
-        <td><%= link_to 'Edit', edit_order_item_path(order_item) %></td>
-        <td><%= link_to 'Destroy', order_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l order_item.created_at, format: :long %></td>
+        <td>
+          <%= link_to order_item_path(order_item), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to order_item_path(order_item), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Order item', new_order_item_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_order_item_path,
+            :class => 'btn btn-primary' %>

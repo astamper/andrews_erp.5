@@ -1,69 +1,46 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Order -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Order %></h1>
+</div>
 
-<p>
-  <strong>Status:</strong>
-  <%= @order.status %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:status) %></dt>
+      <dd><pre class="prettyprint"><%= @order.status %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:first_name) %></dt>
+      <dd><pre class="prettyprint"><%= @order.first_name %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:last_name) %></dt>
+      <dd><pre class="prettyprint"><%= @order.last_name %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:address_1) %></dt>
+      <dd><pre class="prettyprint"><%= @order.address_1 %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:address_2) %></dt>
+      <dd><pre class="prettyprint"><%= @order.address_2 %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:city) %></dt>
+      <dd><pre class="prettyprint"><%= @order.city %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:state) %></dt>
+      <dd><pre class="prettyprint"><%= @order.state %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:zip) %></dt>
+      <dd><pre class="prettyprint"><%= @order.zip %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:email) %></dt>
+      <dd><pre class="prettyprint"><%= @order.email %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:phone) %></dt>
+      <dd><pre class="prettyprint"><%= @order.phone %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:fob_date) %></dt>
+      <dd><pre class="prettyprint"><%= @order.fob_date %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:fob_time) %></dt>
+      <dd><pre class="prettyprint"><%= @order.fob_time %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>First name:</strong>
-  <%= @order.first_name %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              orders_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_order_path(@order), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              order_path(@order),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @order.last_name %>
-</p>
-
-<p>
-  <strong>Address 1:</strong>
-  <%= @order.address_1 %>
-</p>
-
-<p>
-  <strong>Address 2:</strong>
-  <%= @order.address_2 %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @order.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @order.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @order.zip %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @order.email %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @order.phone %>
-</p>
-
-<p>
-  <strong>Fob date:</strong>
-  <%= @order.fob_date %>
-</p>
-
-<p>
-  <strong>Fob time:</strong>
-  <%= @order.fob_time %>
-</p>
-
-<p>
-  <strong>Customer:</strong>
-  <%= @order.customer %>
-</p>
-
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
